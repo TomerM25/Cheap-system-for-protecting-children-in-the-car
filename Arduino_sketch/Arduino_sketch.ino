@@ -1,10 +1,9 @@
 #include <ESP8266WiFi.h>
-//#include <ESP8266WebServer.h>
+
 #define trigPin 16
 #define echoPin 15
 
 //Set web server port number to 80
-//ESP8266WebServer server(80);
 WiFiServer server(80);
 
 const char* ssid = "Tomer_Note8";
