@@ -82,7 +82,9 @@ void loop()
                         client.println("<!DOCTYPE html><html>");
                         client.println("<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
                         client.println("<link rel=\"icon\" href=\"data:,\">");
-
+                        // CSS
+                        client.println("<style>html { font-family: Helvetica; display: inline-block; margin: 0px auto; text-align: center;}</style></head>");
+                        
                         // Web Page Heading
                         client.println("<body><h1>ESP8266 Web Server - Tomer&Ori</h1>");
                         
