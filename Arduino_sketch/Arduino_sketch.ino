@@ -12,6 +12,9 @@ const char* password = "tomer0504";
 // Variable to store the HTTP request
 String header;
 
+// Variable to store the status of WiFi
+int wifiStatus = WL_IDLE_STATUS;
+
 // Current time
 unsigned long currentTime = millis();
 // Previous time
@@ -43,6 +46,7 @@ void setup()
     Serial.println(WiFi.localIP());
     server.begin();
     Serial.println("Server listening");
+    wifiStatus = WL_IDLE_STATUS;
 }
 
 void loop()
