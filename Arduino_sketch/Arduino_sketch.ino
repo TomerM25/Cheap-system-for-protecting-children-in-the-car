@@ -83,14 +83,14 @@ void loop()
                         client.println();
 
                         // Display the HTML web page
-                        client.println("<!DOCTYPE html><html>");
-                        client.println("<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
-                        client.println("<link rel=\"icon\" href=\"data:,\">");
+                        //client.println("<!DOCTYPE html><html>");
+                        //client.println("<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
+                        //client.println("<link rel=\"icon\" href=\"data:,\">");
                         // CSS
-                        client.println("<style>html { font-family: Helvetica; display: inline-block; margin: 0px auto; text-align: center;}</style></head>");
+                        //client.println("<style>html { font-family: Helvetica; display: inline-block; margin: 0px auto; text-align: center;}</style></head>");
                         
                         // Web Page Heading
-                        client.println("<body><h1>ESP8266 Web Server - Tomer&Ori</h1>");
+                        //client.println("<body><h1>ESP8266 Web Server - Tomer&Ori</h1>");
                         
                         // Calculate the distance
                         long duration; 
@@ -104,11 +104,12 @@ void loop()
                         
                         //distance = (duration/2) / 29.1;
                         distance = duration*0.034/2;
-                       
-                        // Display current distance 
-                        client.println("<p>Distance: " + String(distance) + " cm</p>");
+                        client.println(String(distance));
                         
-                        client.println("</body></html>");
+                        // Display current distance 
+                        //client.println("<p>Distance: " + String(distance) + " cm</p>");
+                        
+                        //client.println("</body></html>");
                         
                         // The HTTP response ends with another blank line
                         client.println();
