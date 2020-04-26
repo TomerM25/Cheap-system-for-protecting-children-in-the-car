@@ -1,4 +1,5 @@
 package com.example.protectyourkids;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -15,7 +16,7 @@ import androidx.core.app.NotificationCompat;
 import cz.msebera.android.httpclient.Header;
 
 
-public class MainActivity extends AppCompatActivity //implements View.OnClickListener
+public class MainActivity extends AppCompatActivity
 {
     private static final long START_TIME_IN_MILLIS = 86400000;      //24 hours
     private TextView txtResponse;
