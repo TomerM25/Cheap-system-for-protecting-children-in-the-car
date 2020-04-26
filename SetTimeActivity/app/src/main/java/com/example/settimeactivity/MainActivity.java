@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
     private void handleTimeButton() {
         final Calendar calendar = Calendar.getInstance();
         int Hour = calendar.get(Calendar.HOUR);
@@ -55,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
                 //timeTextView.setText(timeString);
 
                 Calendar calendar1= Calendar.getInstance();
-                calendar1.set(Calendar.HOUR , hour);
-                calendar1.set(calendar.MINUTE, minute);
+                calendar1.set(Calendar.HOUR_OF_DAY , hour);
+                calendar1.set(Calendar.MINUTE, minute);
 
                 CharSequence timecharSequence = DateFormat.format("hh:mm a",calendar1);
                 timeTextView.setText(timecharSequence);
