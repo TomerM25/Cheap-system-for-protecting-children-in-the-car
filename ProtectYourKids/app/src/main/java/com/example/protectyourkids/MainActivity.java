@@ -46,9 +46,8 @@ public class MainActivity extends AppCompatActivity
                 String message = "Child is stuning";
                 NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
-                    Log.d("#####", "Here is the problem");
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                {
                     NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_HIGH);
 
                     // Configure the notification channel.
