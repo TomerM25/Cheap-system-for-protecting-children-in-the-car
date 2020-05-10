@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    tools:context=".MainActivity" >
+    
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_marginTop="32dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp">
+
+
+            <EditText
+                android:id="@+id/profileName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:background="@null"
+                android:inputType="none"
+                android:clickable="false"
+                android:text="My Profile"
+                android:textColor="#131313"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/profile"/>
+
+        </RelativeLayout>
+
+        <GridLayout
+            android:layout_marginTop="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:rowCount="2"
+            android:columnCount="1"
+            android:alignmentMode="alignMargins"
+            android:columnOrderPreserved="false">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/car_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                app:cardElevation="6dp"
+                app:cardCornerRadius="12dp"
+                android:layout_margin="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:padding="16dp"
+                    android:orientation="vertical">
+                    
+                    <ImageView
+                        android:layout_width="350dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/car"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hello"
+                        android:textSize="18sp"
+                        android:textColor="#000000"
+                        android:layout_marginTop="12dp"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/pool_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                app:cardElevation="6dp"
+                app:cardCornerRadius="12dp"
+                android:layout_margin="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:padding="16dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="350dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/swimming_pool"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hello"
+                        android:textSize="18sp"
+                        android:textColor="#000000"
+                        android:layout_marginTop="12dp"/>
+
+
+
+
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+        </GridLayout>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/signout"
+            android:onClick="logout"
+            android:text=""
+            app:layout_constraintVertical_bias="0.817" />
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--
+
+
+       <EditText
+           android:id="@+id/profileName"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_marginEnd="8dp"
+           android:layout_marginStart="8dp"
+           android:layout_marginTop="8dp"
+           android:ems="10"
+           android:inputType="textPersonName"
+           android:text="Your Name"
+           android:textSize="14sp"
+           android:textStyle="bold"
+           android:focusable="false"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toEndOf="@+id/imageView"
+           app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+       <EditText
+           android:id="@+id/profileEmail"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_marginEnd="8dp"
+           android:layout_marginStart="8dp"
+           android:layout_marginTop="8dp"
+           android:ems="10"
+           android:inputType="textEmailAddress"
+           android:text="Your Email"
+           android:textSize="14sp"
+           android:textStyle="bold"
+           android:focusable="false"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toEndOf="@+id/imageView"
+           app:layout_constraintTop_toBottomOf="@+id/profileName" />
+
+       <EditText
+           android:id="@+id/profilePhone"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_marginEnd="8dp"
+           android:layout_marginStart="8dp"
+           android:layout_marginTop="8dp"
+           android:ems="10"
+           android:inputType="phone"
+           android:text="Phone Number"
+           android:textSize="14sp"
+           android:textStyle="bold"
+           android:focusable="false"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toEndOf="@+id/imageView"
+           app:layout_constraintTop_toBottomOf="@+id/profileEmail" />
+
+           -->
+
+</ScrollView>
