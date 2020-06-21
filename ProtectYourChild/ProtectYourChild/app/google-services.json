@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "842075913563",
+    "firebase_url": "https://protect-your-child-facaf.firebaseio.com",
+    "project_id": "protect-your-child-facaf",
+    "storage_bucket": "protect-your-child-facaf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:842075913563:android:4f8a8b6963282dcc87ae7e",
+        "android_client_info": {
+          "package_name": "com.example.protectyourchild"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "842075913563-2e8nbsrvitaohqoh03d0fmg6f9pcat9a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.protectyourchild",
+            "certificate_hash": "3866bb62b4abc89df2e7f92e8e3802ba52aac221"
+          }
+        },
+        {
+          "client_id": "842075913563-htjeutpoohiivqascguuabf0cavrc4ev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCG2nAMxr2ne0OkKFOzImKd21DXJR3dx-E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "842075913563-htjeutpoohiivqascguuabf0cavrc4ev.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
