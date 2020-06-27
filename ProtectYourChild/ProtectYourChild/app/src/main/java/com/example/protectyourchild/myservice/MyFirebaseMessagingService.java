@@ -11,10 +11,18 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 
+import com.example.protectyourchild.EventHistory;
 import com.example.protectyourchild.R;
-import com.example.protectyourchild.SecondActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
@@ -23,7 +31,8 @@ import androidx.core.app.NotificationManagerCompat;
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     String CHANNEL_ID = "2";
-
+    private DatabaseReference reference;
+    String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
     public MyFirebaseMessagingService() {
 
     }
@@ -32,6 +41,17 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         if(remoteMessage.getNotification()!=null)
         {
+
+            reference = FirebaseDatabase.getInstance().getReference("Users");
+            Date today = new Date();
+            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+            final String dateToStr = format.format(today);
+            Map<String,String> alerts = new HashMap<>();
+            alerts.put("Alert",dateToStr );
+            reference.child(currentuser).push().setValue(alerts);
+
+
+
             //Create and Display Notification
             showNotification(remoteMessage.getNotification().getTitle(),remoteMessage.getNotification().getBody());
         }
@@ -46,7 +66,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         //Create Notification Channel
         createNotificationChannel();
-        Intent intent=new Intent(MyFirebaseMessagingService.this, SecondActivity.class);
+        Intent intent=new Intent(MyFirebaseMessagingService.this, EventHistory.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(MyFirebaseMessagingService.this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.hazard);
         Uri defaultNotificationSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);

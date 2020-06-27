@@ -24,11 +24,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 public class pushAlert extends AppCompatActivity {
 
@@ -57,7 +54,7 @@ public class pushAlert extends AppCompatActivity {
                 //String numberOfCookies = cookies.getText().toString();
 
 
-                Intent intent=new Intent(pushAlert.this,SecondActivity.class); //need to put alerts activity list
+                Intent intent=new Intent(pushAlert.this, EventHistory.class); //need to put alerts activity list
                 //intent.putExtra("cookie",numberOfCookies);
                 PendingIntent pendingIntent = PendingIntent.getActivity(pushAlert.this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
 

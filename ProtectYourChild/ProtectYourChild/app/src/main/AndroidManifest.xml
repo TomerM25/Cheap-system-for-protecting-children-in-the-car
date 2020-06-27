@@ -9,14 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".pushAlert"></activity>
+        <activity android:name=".EventHistory"></activity>
+        <activity android:name=".pushAlert" />
         <activity android:name=".barcodeScanner" />
         <activity android:name=".DashBoard" />
         <activity android:name=".Register" />
         <activity android:name=".Pool" />
         <activity android:name=".Login" />
         <activity android:name=".Car" />
-        <activity android:name=".SecondActivity" />
         <activity
             android:name=".splashScreen"
             android:label="@string/app_name">
@@ -40,9 +40,9 @@
             </intent-filter>
         </service>
     </application>
-    <uses-permission android:name="anroid.permission.CAMERA" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="anroid.permission.CAMERA" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
 
 </manifest>
