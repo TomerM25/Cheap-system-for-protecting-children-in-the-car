@@ -35,7 +35,6 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         mEmail=findViewById(R.id.Email);
         mPassword=findViewById(R.id.password);
         progressBar=findViewById(R.id.progressBar2);
@@ -44,11 +43,14 @@ public class Login extends AppCompatActivity {
         mCreateBtn=findViewById(R.id.createText);
         forgotTextLink=findViewById(R.id.forgotPassword);
 
-         if(fAuth.getCurrentUser()!= null)
+        if(fAuth.getCurrentUser()!= null)
         {
-          startActivity(new Intent(getApplicationContext(),DashBoard.class));
-        finish();
+            startActivity(new Intent(getApplicationContext(),DashBoard.class));
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            finish();
         }
+
+
 
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,14 +76,17 @@ public class Login extends AppCompatActivity {
 
                 progressBar.setVisibility(View.VISIBLE);
 
+
+
+
                 //Authenticate the user
                 fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            FirebaseMessaging.getInstance().subscribeToTopic("NEWYORK_WEATHER");///////
+                            //FirebaseMessaging.getInstance().subscribeToTopic("hello");
                             Toast.makeText(Login.this,"Logged in SuccessFully.",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),barcodeScanner.class));
+                            startActivity(new Intent(getApplicationContext(),DashBoard.class));
                         }
                         else {
                             Toast.makeText(Login.this,"Error! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();

@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.protectyourchild">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-feature android:name = "android.hardware.camera.autofocus"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EventHistory"></activity>
+        <activity android:name=".Disarmed"></activity>
+        <activity android:name=".Armed" />
+        <activity android:name=".About" />
+        <activity android:name=".Account" />
+        <activity android:name=".EventHistory" />
         <activity android:name=".pushAlert" />
         <activity android:name=".barcodeScanner" />
         <activity android:name=".DashBoard" />
@@ -27,8 +34,7 @@
             </intent-filter>
         </activity>
 
-        <meta-data
-            android:name="com.google.android.gms.vision.DEPENDENCIES"
+        <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
 
         <service
@@ -40,9 +46,6 @@
             </intent-filter>
         </service>
     </application>
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="anroid.permission.CAMERA" />
 
-    <uses-permission android:name="android.permission.VIBRATE" />
 
 </manifest>

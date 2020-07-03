@@ -36,6 +36,10 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
         userId = fAuth.getCurrentUser().getUid();
+        fullName.setPaintFlags(View.INVISIBLE);
+
+
+
         carCard=(CardView)findViewById(R.id.car_card);
         poolCard=(CardView)findViewById(R.id.pool_card);
 
@@ -73,10 +77,14 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
 
         switch(view.getId())
         {
-            case R.id.pool_card:i= new Intent(this,Pool.class);startActivity(i);break;
-            case R.id.car_card:i=  new Intent(this,Car.class);startActivity(i);break;
+            case R.id.pool_card:i= new Intent(this,Pool.class);startActivity(i);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);break;
+            case R.id.car_card:i= new Intent(this,Car.class);startActivity(i);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);break;
             default:break;
         }
+
+
 
     }
 }

@@ -1,5 +1,4 @@
 package com.example.protectyourchild;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -55,11 +54,7 @@ public class Register extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         progressBar=findViewById(R.id.progressBar);
 
-       // if(fAuth.getCurrentUser()!= null)
-        //{
-          //  startActivity(new Intent(getApplicationContext(),DashBoard.class));
-            //finish();
-        //}
+
 
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override

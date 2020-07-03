@@ -23,6 +23,7 @@
     <SurfaceView
         android:id="@+id/camerapreview"
         android:layout_width="match_parent"
+        android:layout_centerInParent="true"
         android:layout_height="300dp"
         android:layout_below="@+id/scandevice"
         android:layout_marginTop="125dp" />

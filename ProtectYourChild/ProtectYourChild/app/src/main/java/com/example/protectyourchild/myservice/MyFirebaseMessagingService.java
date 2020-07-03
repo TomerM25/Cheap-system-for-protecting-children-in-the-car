@@ -32,7 +32,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     String CHANNEL_ID = "2";
     private DatabaseReference reference;
-    String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    String currentuser;
     public MyFirebaseMessagingService() {
 
     }
@@ -41,7 +41,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         if(remoteMessage.getNotification()!=null)
         {
-
+            currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
             reference = FirebaseDatabase.getInstance().getReference("Users");
             Date today = new Date();
             SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
@@ -49,8 +49,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Map<String,String> alerts = new HashMap<>();
             alerts.put("Alert",dateToStr );
             reference.child(currentuser).push().setValue(alerts);
-
-
 
             //Create and Display Notification
             showNotification(remoteMessage.getNotification().getTitle(),remoteMessage.getNotification().getBody());
