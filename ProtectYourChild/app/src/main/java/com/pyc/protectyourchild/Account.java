@@ -1,17 +1,16 @@
 package com.pyc.protectyourchild;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -23,14 +22,22 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Map;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Account extends AppCompatActivity {
 
     public static final String TAG = "TAG";
     TextView fullName, email, phone;
+    ImageView imageView;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     String userId;
@@ -38,6 +45,7 @@ public class Account extends AppCompatActivity {
     private ListView listView;
     private FirebaseDatabase database;
     private DatabaseReference myRef;
+    private StorageReference storageReference;
     private ArrayList<String> mSensors = new ArrayList<>();
 
 
@@ -50,9 +58,12 @@ public class Account extends AppCompatActivity {
         phone = findViewById(R.id.profilePhoneNo);
         fullName = findViewById(R.id.profileFullName);
         email = findViewById(R.id.profileEmailAddress);
+        imageView = findViewById(R.id.profilePic);
+
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
+        storageReference = FirebaseStorage.getInstance().getReference();
         userId = fAuth.getCurrentUser().getUid();
 
 
@@ -72,6 +83,15 @@ public class Account extends AppCompatActivity {
                 }
             }
         });
+
+        StorageReference profileRef =storageReference.child("users/"+userId+"/profile.jpg");
+        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(imageView);
+            }
+        });
+
 
         database = FirebaseDatabase.getInstance();
         String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();

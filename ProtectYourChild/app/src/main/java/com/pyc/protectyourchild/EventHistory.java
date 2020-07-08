@@ -41,8 +41,8 @@ public class EventHistory extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Map <String,Object> map = (Map<String,Object>)dataSnapshot.getValue();
-                mUserName.add("Alert At: " +map.get("Alert").toString());
-               arrayAdapter.notifyDataSetChanged();
+                mUserName.add(map.get("Alert").toString());
+                arrayAdapter.notifyDataSetChanged();
 
             }
 

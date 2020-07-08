@@ -1,16 +1,10 @@
 package com.pyc.protectyourchild;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
 import android.Manifest;
 import android.app.Activity;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
-import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -42,7 +36,10 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 import com.squareup.picasso.Picasso;
 
-import java.io.ByteArrayInputStream;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 public class DashBoard extends AppCompatActivity implements View.OnClickListener {
 
@@ -57,16 +54,22 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
 
     public static final String TAG = "TAG";
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         requestCameraPermission();
 
-        AudioManager am= (AudioManager) getBaseContext().getSystemService(Context.AUDIO_SERVICE);
-        am.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-        am.setStreamVolume(AudioManager.STREAM_RING,am.getStreamMaxVolume(AudioManager.STREAM_RING),0);
+        NotificationManager mNotificationManager = (NotificationManager)DashBoard.this.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+
+            // Check if the notification policy access has been granted for the app.
+            if (!mNotificationManager.isNotificationPolicyAccessGranted()) {
+                Intent intent = new Intent(android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
+                startActivity(intent);
+            }
+        }
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
@@ -96,7 +99,7 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
         imageView = findViewById(R.id.profileImageView);
         registerForContextMenu(profile_card);
 
-        StorageReference profileRef =storageReference.child(userId+".jpg");
+        StorageReference profileRef =storageReference.child("users/"+userId+"/profile.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -120,6 +123,9 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
                 }
             }
         });
+
+
+
     }
 
     @Override
@@ -157,13 +163,13 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
             case R.id.account : i = new Intent(this,Account.class); startActivity(i);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);break;
 
-            case R.id.armed : i = new Intent(this,Armed.class); startActivity(i); //FirebaseMessaging.getInstance().subscribeToTopic();
+            case R.id.armed : i = new Intent(this, Activate.class); startActivity(i); //FirebaseMessaging.getInstance().subscribeToTopic();
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);break;
 
             case R.id.help : i = new Intent(this,About.class); startActivity(i);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);break;
 
-            case R.id.disarmed : i = new Intent(this, Disarmed.class); startActivity(i); //FirebaseMessaging.getInstance().subscribeToTopic();
+            case R.id.disarmed : i = new Intent(this, Deactivate.class); startActivity(i); //FirebaseMessaging.getInstance().subscribeToTopic();
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);break;
 
         }
@@ -208,16 +214,16 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode ==1000){
-            Uri imageUri =data.getData();
-            //imageView.setImageURI(imageUri);
-            handleUpload (imageUri);
-
+            if(resultCode == Activity.RESULT_OK) {
+                Uri imageUri = data.getData();
+                handleUpload(imageUri);
+            }
         }
     }
     //Upload profile picture to firebase
     private void handleUpload (Uri image)
     {
-        StorageReference reference = storageReference.child(userId+".jpg");
+        StorageReference reference = storageReference.child("users/"+userId+"/profile.jpg");
         reference.putFile(image).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {

@@ -27,6 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -34,21 +35,21 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     String CHANNEL_ID = "2";
     private DatabaseReference reference;
-    String currentuser;
+    String currentuser,sensor;
     AudioManager am;
 
     public MyFirebaseMessagingService() {
     }
-
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage)
     {
         Map <String, String> data = remoteMessage.getData();
+
         am= (AudioManager) getBaseContext().getSystemService(Context.AUDIO_SERVICE);
         am.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
         am.setStreamVolume(AudioManager.STREAM_RING,am.getStreamMaxVolume(AudioManager.STREAM_RING),0);
 
-        if(remoteMessage.getNotification()!=null)
+        if(remoteMessage.getData()!=null)
         {
             currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
             reference = FirebaseDatabase.getInstance().getReference("Users");
@@ -57,11 +58,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
             final String dateToStr = format.format(time);
             Map<String,String> alerts = new HashMap<>();
-            alerts.put("Alert",dateToStr );
+            sensor = data.get("Sensor");
+            alerts.put("Alert",sensor+" At: "+dateToStr );
             reference.child(currentuser).push().setValue(alerts);
             //Create and Display Notification
-            showNotification(data.get("title"),data.get("text"));
+
         }
+        showNotification(data.get("title"),data.get("text"));
 
     }
 
@@ -113,7 +116,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             String name = "My Channel Name2";
             String description = "My Channel description2";
             int importance = NotificationManager.IMPORTANCE_HIGH;
-
 
             am= (AudioManager) getBaseContext().getSystemService(Context.AUDIO_SERVICE);
             am.setRingerMode(AudioManager.RINGER_MODE_NORMAL);

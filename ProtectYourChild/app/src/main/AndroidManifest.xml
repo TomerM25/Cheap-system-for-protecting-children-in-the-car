@@ -13,8 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
-        <activity android:name="com.pyc.protectyourchild.Disarmed"></activity>
-        <activity android:name="com.pyc.protectyourchild.Armed" />
+        <activity android:name="com.pyc.protectyourchild.Deactivate"></activity>
+        <activity android:name="com.pyc.protectyourchild.Activate" />
         <activity android:name="com.pyc.protectyourchild.About" />
         <activity android:name="com.pyc.protectyourchild.Account" />
         <activity android:name="com.pyc.protectyourchild.barcodeScanner" />
