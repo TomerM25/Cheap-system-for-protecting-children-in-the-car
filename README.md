@@ -13,6 +13,7 @@ The project consists of an application that works on ANDROID and communicates wi
 
 • The app will need to be synchronized with the "Arduino" microcontroller in order to identify the forgotten child in real time, in addition to the microcontroller being synchronized with the motion sensors and getting real-time data.
 
+https://youtu.be/cBIrB_rkyYg
+
 Ori Ben Shitrit & Tomer Maalumi ©
 protectyourkids20@gmail.com
-https://youtu.be/cBIrB_rkyYg
